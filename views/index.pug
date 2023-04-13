@@ -9,7 +9,7 @@ block content
       form(action="/save", method="POST")
         label(for="content") Paste your content here:
         br
-        textarea(name="content", id="content", rows="10", cols="50")
+        textarea(name="content", id="content", rows="10", cols="50", wrap="soft")
         br
         button(type="submit") Save
       if id_content
