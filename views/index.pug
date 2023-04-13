@@ -1,5 +1,21 @@
-extends layout
+extends layout 
 
 block content
-  h1= title
-  p Welcome to #{title}
+  html
+    head
+      title Morcela
+    body
+      h1 Morcela Anon Paste Service 
+      form(action="/save", method="POST")
+        label(for="content") Paste your content here:
+        br
+        textarea(name="content", id="content", rows="10", cols="50")
+        br
+        button(type="submit") Save
+      if id_content
+        p Your paste has been saved at:
+        a(href=`/pastes/${id_content}`, class='button') Link
+
+
+
+        

@@ -1,8 +1,83 @@
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 16px;
+  padding: 0px;
+}
+
+/* Global */
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 a {
-  color: #00B7FF;
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button,
+input[type="button"],
+input[type="submit"] {
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 8px 16px;
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
+  background-color: #0062cc;
+}
+
+/* Layout */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+}
+
+.header h1 {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.header nav {
+  display: flex;
+}
+
+.header nav a {
+  margin-left: 16px;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 16px 0;
+}
+
+/* Forms */
+.form-group {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
 }
