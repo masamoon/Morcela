@@ -15,7 +15,7 @@ router.post('/save', function(req,res,next){
   file_name = id_content+'.md';
   fs.writeFile('pastes/'+file_name,paste_content,(err)=> {
     if (err){
-      console.errot(err);
+      console.error(err);
       res.sendStatus(500);
     } else {
       res.render('index',{id_content:id_content});
