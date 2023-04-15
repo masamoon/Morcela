@@ -81,3 +81,8 @@ label {
   display: block;
   font-weight: bold;
 }
+
+div.paste-content {
+  border: 1px solid black;
+  padding: 10px;
+}

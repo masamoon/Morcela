@@ -26,7 +26,6 @@ router.post('/save', function(req,res,next){
 router.get('/pastes/:id', (req,res) => {
   const paste_id = req.params.id;
   const markdownContent = fs.readFileSync('pastes/'+paste_id+'.md', 'utf8');
-  console.log(marked(markdownContent));
   res.render('pastes.pug', { pasteContent: marked(markdownContent) });
 
 
