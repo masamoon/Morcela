@@ -4,8 +4,13 @@ block content
   html
     head
       title Morcela
+    
+
     body
-      h1 Morcela Anon Paste Service 
+      div.container
+        h1(style='float:left;') Morcela 
+        img(src=' morcela.png', alt='logo', style='width:px;height:50px;margin-left:10px;')
+
       form(action="/save", method="POST")
         label(for="content") Paste your content here:
         br
