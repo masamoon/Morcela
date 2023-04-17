@@ -18,7 +18,7 @@ router.post('/save', function(req,res,next){
       console.error(err);
       res.sendStatus(500);
     } else {
-      res.render('index',{id_content:id_content});
+      res.redirect('pastes/'+id_content);
     }
   });
 });
@@ -30,6 +30,8 @@ router.get('/pastes/:id', (req,res) => {
 
 
 });
+
+
 
 module.exports = router;
 

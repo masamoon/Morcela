@@ -3,10 +3,24 @@ extends layout
 block content
     html 
         head 
-            
-            
+
+
         body 
+            script(type='text/javascript').
+                function copyToClipboard(){
+                    navigator.clipboard.writeText(window.location.href);   
+                    var tooltip = document.getElementById("copyTooltip");   
+                    tooltip.innerHTML = "Copied URL to your Morcela";             
+                }
+                function outTooltip(){
+                    var tooltip = document.getElementById("copyTooltip");
+                     tooltip.innerHTML = "Copy to clipboard";
+                }
             div.paste-content
                 div.htmloutput
                     != pasteContent
-            
+
+            div(class="tooltip-custom")
+                button(class="button",onclick='copyToClipboard()',onmouseout="outTooltip()",onmousein="outTooltip()") Share Morcela
+                    span(class="tooltiptext-custom" id="copyTooltip") 
+                
