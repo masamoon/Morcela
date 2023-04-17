@@ -7,19 +7,21 @@ block content
     
 
     body
-      div.container
+      //div.container
         h1(style='float:left;') Morcela 
         img(src=' morcela.png', alt='logo', style='width:px;height:50px;margin-left:10px;')
-
-      form(action="/save", method="POST")
-        label(for="content") Paste your content here:
-        br
-        textarea(name="content", id="content", rows="10", cols="50", wrap="soft")
-        br
-        button(type="submit") Save
-      if id_content
-        p Your paste has been saved at:
-        a(href=`/pastes/${id_content}`, class='button') Link
+      div.container
+        
+        div.paste
+          a() New Morcela:
+          form(action="/save", method="POST")
+            br
+            textarea(class="textinput",name="content", id="content", placeholder="Paste your content here")
+            br
+            button(type="submit") Save
+          if id_content
+            p Your paste has been saved at:
+            a(href=`/pastes/${id_content}`, class='button') Link
 
 
 

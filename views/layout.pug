@@ -6,11 +6,16 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     
   body
-
-    nav(class="navbar navbar-expand-md bg-dark navbar-dark") 
-      a(class="")
-
-    block content
+    div.navbar
+      div(class='container flex')
+        h2.logo    
+          a Morcela                
+        nav
+          ul
+            li 
+              a About 
+    div.wrap
+      block content
 
     script(src='https://code.jquery.com/jquery-3.2.1.min.js'
            integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='

@@ -1,21 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
 
 /* Reset */
 * {
   box-sizing: border-box;
-  margin: 16px;
+  margin: 0px;
   padding: 0px;
 }
 
 /* Global */
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.6;
+  background-color: rgb(77, 76, 76);
+}
+
+ul {
+  list-style-type: none;
 }
 
 a {
-  color: #007bff;
+  font-family: 'Lato', sans-serif;
+  color: #fff;
   text-decoration: none;
 }
 
@@ -26,7 +32,7 @@ a:hover {
 button,
 input[type="button"],
 input[type="submit"] {
-  background-color: #007bff;
+  background-color: #000000;
   border: none;
   color: #fff;
   cursor: pointer;
@@ -37,37 +43,46 @@ input[type="submit"] {
 button:hover,
 input[type="button"]:hover,
 input[type="submit"]:hover {
-  background-color: #0062cc;
+  background-color: #b8b8b8;
 }
 
 /* Layout */
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 16px;
+  max-width: 820px;
+  margin: 0px auto;
+  margin-top: 50px;
 }
 
-/* Header */
-.header {
+.wrap{
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto -226px;
+  padding: 0 0 226px;
+  background: #2b2a2a;
+}
+
+
+
+.navbar {
+  background-color: #2b2a2a;
+  color:#fff;
+  height: 70px;
+}
+
+.navbar ul{
   display: flex;
+}
+
+.navbar a{
+  color:#fff;
+  padding: 10px;
+  margin: 0 5px;
+}
+
+.navbar .flex{
   justify-content: space-between;
-  align-items: center;
-  padding: 16px 0;
 }
 
-.header h1 {
-  font-family: 'Roboto', sans-serif;
-  font-size: 32px;
-  font-weight: bold;
-}
-
-.header nav {
-  display: flex;
-}
-
-.header nav a {
-  margin-left: 16px;
-}
 
 /* Footer */
 .footer {
@@ -85,7 +100,28 @@ label {
   font-weight: bold;
 }
 
-div.paste-content {
-  border: 1px solid black;
-  padding: 10px;
+
+
+div.paste {
+  float: left;
+  width: 100%;
+  height: auto;
+}
+
+.textinput{
+  float: left;
+  width: 100%;
+  min-height: 200px;
+  outline: none;
+  resize: none;
+  border: 1px solid grey;
+  background-color: #757474;
+  color:#fff;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height:100%;
 }
