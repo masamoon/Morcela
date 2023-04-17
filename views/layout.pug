@@ -6,16 +6,15 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     
   body
-    div.navbar
-      div(class='container flex')
-        h2.logo    
-          a Morcela                
-        nav
-          ul
-            li 
-              a About 
+    div(class='topnav')           
+      a(href="/")
+        img(src='/images/morcela.png', alt='logo', style='width:px;height:30px;margin-left:10px;')
+      a.active(href="/") Morcela 
+      a About
+
     div.wrap
-      block content
+      div.container
+        block content
 
     script(src='https://code.jquery.com/jquery-3.2.1.min.js'
            integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='

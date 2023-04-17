@@ -13,6 +13,7 @@ body {
   font-size: 16px;
   line-height: 1.6;
   background-color: rgb(77, 76, 76);
+  color:#fff;
 }
 
 ul {
@@ -62,26 +63,30 @@ input[type="submit"]:hover {
 }
 
 
-
-.navbar {
-  background-color: #2b2a2a;
-  color:#fff;
-  height: 70px;
+.topnav {
+  overflow: hidden;
+  background-color: #333;
 }
 
-.navbar ul{
-  display: flex;
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
 }
 
-.navbar a{
-  color:#fff;
-  padding: 10px;
-  margin: 0 5px;
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
 }
 
-.navbar .flex{
-  justify-content: space-between;
+.topnav a.active {
+  background-color: #676c6a;
+  color: white;
 }
+
 
 
 /* Footer */
@@ -115,7 +120,7 @@ div.paste {
   outline: none;
   resize: none;
   border: 1px solid grey;
-  background-color: #757474;
+  background-color: #474646;
   color:#fff;
 }
 
@@ -124,4 +129,17 @@ div.paste {
   justify-content: space-between;
   align-items: center;
   height:100%;
+}
+
+.paste-content{
+  float: left;
+  width: 80%;
+  margin-left: 20px;
+  margin-top: 20px;
+  min-height: 200px;
+  outline: none;
+  resize: none;
+  border: 1px solid grey;
+  background-color: #474646;
+  color:#fff;
 }
