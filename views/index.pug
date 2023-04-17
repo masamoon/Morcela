@@ -3,18 +3,17 @@ extends layout
 block content
   html
     head
-      title Morcela
+      
     
 
     body
             
       div.paste
-        a New Morcela:
         form(action="/save", method="POST")
           br
           textarea(class="textinput",name="content", id="content", placeholder="Paste your content here")
           br
-          button(type="submit") Save
+          button(class="submit", type="submit") Save
         if id_content
           p Your paste has been saved at:
           a(href=`/pastes/${id_content}`, class='button') Link
