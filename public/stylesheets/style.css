@@ -40,6 +40,8 @@ input[type="submit"] {
   font-size: 16px;
   padding: 8px 16px;
   margin-top: 10px;
+  width: 100%;
+  max-width: 150px;
 }
 
 button:hover,
@@ -172,13 +174,12 @@ div.paste {
 
 .paste-content{
   float: left;
-  width: 80%;
-  margin-left: 20px;
-  margin-top: 20px;
+  width: 100%;
   min-height: 200px;
   outline: none;
   resize: none;
   border: 1px solid grey;
   background-color: #474646;
+  margin-top: 50px;
   color:#fff;
 }
