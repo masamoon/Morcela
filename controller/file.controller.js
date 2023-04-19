@@ -8,6 +8,7 @@ const bucket = storage.bucket("morcelas-storage");
 const { marked } = require('marked');
 const {v4: uuidv4 } = require('uuid')
 const path = require("path");
+const crypto_utils = require("../utils/crypto.utils");
 
 const upload = async (req, res) => {
     
@@ -16,12 +17,12 @@ const upload = async (req, res) => {
     try {
         //await processFile(req, res);
         
-        const paste_content = req.body.content;
-        
-        file_name = id_content+'.md';
+        const paste_content = req.body.content;  
+        const paste_password = req.body.password;
+        const paste_protected = req.body.password_protected;
 
-        await bucket.file(file_name).save(paste_content);
-        
+        file_name = id_content+'.md';
+        await bucket.file(file_name).save(paste_content);    
         
       } catch (err) {
         res.status(500).send({
@@ -45,18 +46,12 @@ const upload = async (req, res) => {
         };
 
         await bucket.file(paste_id+'.md').download(options);
-
         const markdownContent = fs.readFileSync(file_path, 'utf8');
-
         fs.rmSync('pastes/'+paste_id+'.md', {
             force: true,
         });
-
-        res.render('pastes.pug', { pasteContent: marked(markdownContent) });
-        
-        
-
-        
+        res.render('pastes.pug', { pasteContent: marked(markdownContent) });    
+               
       } catch (err) {
         res.status(500).send({
           message: "Could not download the file. " + err,

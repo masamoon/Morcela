@@ -13,10 +13,33 @@ block content
           br
           textarea(class="textinput",name="content", id="content", placeholder="Paste your content here")
           br
+          br
+          
+          div.toggle
+            input(type="checkbox", class="slider", id="toggle-slider", name="password_protected") 
+            label(for="toggle-slider",style="margin-right:3px;")  Password protected
+            div.toggle-content
+              input(type="password",name="password",id="password", class="passwordinput",placeholder="password")
+          br
+          br
           button(class="submit", type="submit") Save
+         
+         
         if id_content
           p Your paste has been saved at:
           a(href=`/pastes/${id_content}`, class='button') Link
+        
+        script(type='text/javascript').
+          const toggleSlider = document.querySelector('#toggle-slider');
+          const toggleContent = document.querySelector('.toggle-content');
+
+          toggleSlider.addEventListener('input', function() {
+            if (toggleSlider.checked) {
+              toggleContent.style.display = 'block';
+            } else {
+              toggleContent.style.display = 'none';
+            }
+            });
 
 
 
