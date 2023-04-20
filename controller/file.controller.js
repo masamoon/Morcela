@@ -1,4 +1,3 @@
-const processFile = require("../middleware/upload");
 const { format } = require("util");
 var fs = require('fs');
 const { Storage } = require("@google-cloud/storage");
@@ -16,7 +15,8 @@ const upload = async (req, res) => {
     
     try {
         //await processFile(req, res);
-        
+        // add logic to check file size 
+
         const paste_content = req.body.content;  
         const paste_password = req.body.password;
         const paste_protected = req.body.password_protected;
