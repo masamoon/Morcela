@@ -5,7 +5,8 @@ block content
         head 
 
 
-        body 
+        body
+            
             script(type='text/javascript').
                 function copyToClipboard(){
                     navigator.clipboard.writeText(window.location.href);   
@@ -16,10 +17,14 @@ block content
                     var tooltip = document.getElementById("copyTooltip");
                      tooltip.innerHTML = "Copy to clipboard";
                 }
+                
+
+
             div.paste-content
                 div.htmloutput
-                    != pasteContent
-                
+                    
+            script(src='javascripts/pbkdf2.js') 
+               
             div(class="tooltip-custom")
                 button(class="button",onclick='copyToClipboard()',onmouseout="outTooltip()",onmousein="outTooltip()") Share Morcela
                     span(class="tooltiptext-custom" id="copyTooltip") 

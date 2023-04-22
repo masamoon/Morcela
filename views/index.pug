@@ -9,7 +9,7 @@ block content
     body
             
       div.paste
-        form(action="/save", method="POST")
+        form(onsubmit="return false")
           br
           textarea(class="textinput",name="content", id="content", placeholder="Paste your content here")
           br
@@ -22,13 +22,16 @@ block content
               input(type="password",name="password",id="password", class="passwordinput",placeholder="password")
           br
           br
-          button(class="submit", type="submit") Save
+          button(class="encrypt-button") Save
          
-         
+        div.ciphertext 
+          span.ciphertext-value enctext
         if id_content
           p Your paste has been saved at:
+          
           a(href=`/pastes/${id_content}`, class='button') Link
         
+        script(src='javascripts/pbkdf2.js')
         script(type='text/javascript').
           const toggleSlider = document.querySelector('#toggle-slider');
           const toggleContent = document.querySelector('.toggle-content');
@@ -40,6 +43,8 @@ block content
               toggleContent.style.display = 'none';
             }
             });
+
+          
 
 
 

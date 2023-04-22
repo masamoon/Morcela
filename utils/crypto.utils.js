@@ -17,6 +17,8 @@ const encryptWithPassword = async (content,password) => {
     // Encrypt the data using AES-CBC mode
     let encrypted_data = cipher.update(content, 'utf8', 'hex');
     encrypted_data += cipher.final('hex');
+
+    return [salt,encrypted_data];
 };
 
 
@@ -36,3 +38,8 @@ const decryptWithPassword = async (encrypted_data,salt,password) => {
     let decrypted_data = decipher.update(encrypted_data.slice(32), 'hex', 'utf8');
     decrypted_data += decipher.final('utf8');
 };
+
+module.exports = {
+    encryptWithPassword,
+    decryptWithPassword,
+  };
