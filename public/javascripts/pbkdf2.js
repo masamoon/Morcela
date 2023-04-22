@@ -91,7 +91,6 @@
   
       
       const ciphertext_result = Array.from(new Uint8Array(ciphertext));
-      console.log(ciphertext_result);
       var b64_cipher = btoa( ciphertext_result);
       
       const paste_id = await sendPaste(b64_cipher,salt,iv);
@@ -144,7 +143,7 @@
           
         
         const decryptedText = new TextDecoder('utf-8').decode(new Uint8Array(decrypted));
-        console.log(decryptedText);
+        
         let htmlBox = document.querySelector(".htmloutput");
         htmlBox.innerHTML = decryptedText;
         
@@ -175,7 +174,7 @@
         
         
         const paste_id_text = await paste_id.json();
-        console.log('paste id: ', paste_id_text);
+        
         const pwd_object = { 
              
             salt: btoa(salt), 
@@ -184,7 +183,8 @@
 
         const ciphertextValue = document.querySelector(".ciphertext-value");
         ciphertextValue.textContent = `http://localhost:3000/viewer?id=${paste_id_text}&key=${btoa(JSON.stringify(pwd_object))}&pwd=password`;
-    }
+        document.querySelector(".ciphertext-label").innerHTML = `Here's your shareable Morcela, don't forget to replace the 'pwd' parameter with your password:`;
+      }
   
     
     if(document.querySelector(".encrypt-button") !== null){

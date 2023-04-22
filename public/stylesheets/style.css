@@ -27,7 +27,7 @@ a {
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 button,
@@ -202,8 +202,12 @@ div.paste {
   resize: none;
   border: 1px solid grey;
   background-color: #474646;
-  margin-top: 50px;
   color:#fff;
+}
+
+.ciphertext-label{
+  
+  margin-top:10px;
 }
 
 .toggle .slider {

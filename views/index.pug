@@ -25,11 +25,12 @@ block content
           button(class="encrypt-button") Save
          
         div.ciphertext 
-          textarea.ciphertext-value 
-        if id_content
-          p Your paste has been saved at:
-          
-          a(href=`/pastes/${id_content}`, class='button') Link
+          label(for="ciphertext-value",class="ciphertext-label")
+          textarea(class="ciphertext-value", id="ciphertext-value")
+          div(class="tooltip-custom")
+                button(class="button",onclick='copyToClipboard()',onmouseout="outTooltip()",onmousein="outTooltip()") Share Morcela
+                    span(class="tooltiptext-custom" id="copyTooltip") 
+        
         
         script(src='javascripts/pbkdf2.js')
         script(type='text/javascript').
@@ -43,6 +44,16 @@ block content
               toggleContent.style.display = 'none';
             }
             });
+        script(type='text/javascript').
+              function copyToClipboard(){
+                  navigator.clipboard.writeText(document.getElementById("ciphertext-value").value);   
+                  var tooltip = document.getElementById("copyTooltip");   
+                  tooltip.innerHTML = "Copied URL to your Morcela";             
+              }
+              function outTooltip(){
+                  var tooltip = document.getElementById("copyTooltip");
+                    tooltip.innerHTML = "Copy to clipboard";
+              }
 
           
 
