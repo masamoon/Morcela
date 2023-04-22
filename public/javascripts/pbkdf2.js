@@ -5,7 +5,7 @@
     let iv;
   
     /*
-    Fetch the contents of the "message" textbox, and encode it
+    Fetch the contents of the "content" textbox, and encode it
     in a form we can use for the encrypt operation.
     */
     function getMessageEncoding() {
@@ -71,14 +71,11 @@
     the ciphertext.
     */
     async function encrypt() {
-      const ciphertextValue = document.querySelector(".ciphertext-value");
-      ciphertextValue.textContent = "";
-      //const decryptedValue = document.querySelector(".pbkdf2 .decrypted-value");
-      //decryptedValue.textContent = "";
+     
   
       let keyMaterial = await getKeyMaterial();
       salt = window.crypto.getRandomValues(new Uint8Array(16));
-      console.log(salt);
+      
       let key = await getKey(keyMaterial, salt);
       iv = window.crypto.getRandomValues(new Uint8Array(12));
       let encoded = getMessageEncoding();
@@ -92,15 +89,12 @@
         encoded
       );
   
-      let buffer = new Uint8Array(ciphertext, 0, 5);
-      ciphertextValue.classList.add("fade-in");
-      ciphertextValue.addEventListener("animationend", () => {
-        ciphertextValue.classList.remove("fade-in");
-      });
-      //ciphertextValue.textContent = `${buffer}...[${ciphertext.byteLength} bytes total]`;
-      var b64_cipher = btoa(ciphertextValue);
       
-      const paste_id = await sendPaste(JSON.stringify(b64_cipher),salt,iv);
+      const ciphertext_result = Array.from(new Uint8Array(ciphertext));
+      console.log(ciphertext_result);
+      var b64_cipher = btoa( ciphertext_result);
+      
+      const paste_id = await sendPaste(b64_cipher,salt,iv);
 
       
 
@@ -115,10 +109,7 @@
     update the "decryptedValue" box with an error message.
     */
     async function decrypt() {
-      //const decryptedValue = document.querySelector(".pbkdf2 .decrypted-value");
-      //decryptedValue.textContent = "";
-      //decryptedValue.classList.remove("error");
-      //console.log('decrypting...');
+      
       const urlParams = new URLSearchParams(window.location.search);
       const password = urlParams.get('pwd');
       const pasteId = urlParams.get('id');
@@ -127,19 +118,20 @@
       const decoded_cipherMaterial = atob(cipherMaterial);
       
       salt = atob(JSON.parse(decoded_cipherMaterial).salt);
-      
       iv = atob(JSON.parse(decoded_cipherMaterial).iv);
-      console.log(password)
+
+      salt = new Uint8Array( salt.split(','))
+      iv = new Uint8Array( iv.split(','))
+      
       let keyMaterial = await getKeyMaterialDecrypt(password);
       let key = await getKey(keyMaterial, salt);
-      ciphertext = await getPaste(pasteId);
-      let enc = new TextEncoder();
-      console.log(iv);
-      iv = enc.encode(iv);
-
-      console.log(iv);
-      ciphertext = enc.encode(atob(JSON.parse(ciphertext)));
-      console.log(ciphertext);
+      ciphertext = await getPaste(pasteId);   
+      
+      
+      ciphertext = atob(ciphertext);
+     
+      ciphertext = new Uint8Array( ciphertext.split(','));
+      
       try {
         let decrypted = await window.crypto.subtle.decrypt(
           {
@@ -150,14 +142,12 @@
           ciphertext
         );
           
-        let dec = new TextDecoder();
-        console.log(decrypted);
-        decryptedValue.classList.add("fade-in");
-        decryptedValue.addEventListener("animationend", () => {
-          decryptedValue.classList.remove("fade-in");
-        });
         
-        decryptedValue.textContent = dec.decode(decrypted);
+        const decryptedText = new TextDecoder('utf-8').decode(new Uint8Array(decrypted));
+        console.log(decryptedText);
+        let htmlBox = document.querySelector(".htmloutput");
+        htmlBox.innerHTML = decryptedText;
+        
       } catch (e) {
         console.log(e);
       }
@@ -193,7 +183,7 @@
         };
 
         const ciphertextValue = document.querySelector(".ciphertext-value");
-        ciphertextValue.textContent = `http://localhost:3000/pastes?id=${paste_id_text}&key=${btoa(JSON.stringify(pwd_object))}`;
+        ciphertextValue.textContent = `http://localhost:3000/viewer?id=${paste_id_text}&key=${btoa(JSON.stringify(pwd_object))}&pwd=password`;
     }
   
     
