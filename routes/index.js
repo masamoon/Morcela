@@ -15,13 +15,13 @@ router.post('/save', function(req,res,next){
 
 });
 
-router.get('/viewer/', (req,res) => {
+router.get('/viewer', (req,res) => {
 
   res.render('pastes');
   
 });
 
-router.get('/pastes/', (req,res) => {
+router.get('/pastes', (req,res) => {
 
   controller.download(req,res);
   

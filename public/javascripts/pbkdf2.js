@@ -48,6 +48,8 @@
     derive an AES-GCM key using PBKDF2.
     */
     function getKey(keyMaterial, salt) {
+      let enc = new TextEncoder();
+      salt = enc.encode(salt);
       return window.crypto.subtle.deriveKey(
         {
           "name": "PBKDF2",
@@ -76,6 +78,7 @@
   
       let keyMaterial = await getKeyMaterial();
       salt = window.crypto.getRandomValues(new Uint8Array(16));
+      console.log(salt);
       let key = await getKey(keyMaterial, salt);
       iv = window.crypto.getRandomValues(new Uint8Array(12));
       let encoded = getMessageEncoding();
@@ -115,7 +118,7 @@
       //const decryptedValue = document.querySelector(".pbkdf2 .decrypted-value");
       //decryptedValue.textContent = "";
       //decryptedValue.classList.remove("error");
-      console.log('decrypting...');
+      //console.log('decrypting...');
       const urlParams = new URLSearchParams(window.location.search);
       const password = urlParams.get('pwd');
       const pasteId = urlParams.get('id');
@@ -124,12 +127,19 @@
       const decoded_cipherMaterial = atob(cipherMaterial);
       
       salt = atob(JSON.parse(decoded_cipherMaterial).salt);
+      
       iv = atob(JSON.parse(decoded_cipherMaterial).iv);
-
+      console.log(password)
       let keyMaterial = await getKeyMaterialDecrypt(password);
       let key = await getKey(keyMaterial, salt);
-      ciphertext = getPaste(pasteId);
+      ciphertext = await getPaste(pasteId);
+      let enc = new TextEncoder();
+      console.log(iv);
+      iv = enc.encode(iv);
 
+      console.log(iv);
+      ciphertext = enc.encode(atob(JSON.parse(ciphertext)));
+      console.log(ciphertext);
       try {
         let decrypted = await window.crypto.subtle.decrypt(
           {
@@ -141,24 +151,24 @@
         );
           
         let dec = new TextDecoder();
+        console.log(decrypted);
         decryptedValue.classList.add("fade-in");
         decryptedValue.addEventListener("animationend", () => {
           decryptedValue.classList.remove("fade-in");
         });
-        console.log(dec.decode(decrypted));
+        
         decryptedValue.textContent = dec.decode(decrypted);
       } catch (e) {
-        decryptedValue.classList.add("error");
-        decryptedValue.textContent = "*** Decryption error ***";
+        console.log(e);
       }
     }
 
     const getPaste = async(id) => {
 
 
-        const pasteEncoded = await fetch('/paste?id='+id);
+        const pasteEncoded = await fetch('/pastes?id='+id);
         const pasteEncodedData = await pasteEncoded.json();
-        console.log(pasteEncodedData);
+        
         return pasteEncodedData;
     }
 

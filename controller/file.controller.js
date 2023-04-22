@@ -62,7 +62,7 @@ const upload = async (req, res) => {
         fs.rmSync('pastes/'+paste_id+'.md', {
             force: true,
         });
-        res.render('pastes.pug', { pasteContent: marked(markdownContent) });    
+        res.status(200).json(markdownContent);    
                
       } catch (err) {
         res.status(500).send({
